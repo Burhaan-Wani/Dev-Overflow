@@ -34,7 +34,7 @@ const MobileNavigation = async () => {
                 className="background-light900_dark200 border-none p-3"
             >
                 <SheetTitle className="hidden">Navigation</SheetTitle>
-                <Link href="/" className="flex items-center gap-1">
+                <Link href="/" className="flex items-center gap-1 pl-3">
                     <Image
                         src="/images/site-logo.svg"
                         width={23}
