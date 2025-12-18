@@ -2,7 +2,7 @@ import NavLinks from "./navbar/Navlinks";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { ROUTES } from "@/constants/route";
+import ROUTES from "@/constants/route";
 import { LogOut } from "lucide-react";
 import { signOut } from "@/auth";
 

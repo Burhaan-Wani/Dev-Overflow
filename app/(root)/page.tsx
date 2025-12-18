@@ -1,7 +1,8 @@
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
-import { ROUTES } from "@/constants/route";
+import ROUTES from "@/constants/route";
 import Link from "next/link";
 
 interface RouteParams {
@@ -29,6 +30,11 @@ export default async function Home({ searchParams }: RouteParams) {
                 />
             </section>
             <HomeFilter />
+            <div className="mt-10 flex w-full flex-col gap-6">
+                {/* {questions.map((question) => (
+                    <QuestionCard key={question._id} question={question} />
+                ))} */}
+            </div>
         </>
     );
 }

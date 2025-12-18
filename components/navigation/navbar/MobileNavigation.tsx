@@ -12,7 +12,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import NavLinks from "./Navlinks";
-import { ROUTES } from "@/constants/route";
+import ROUTES from "@/constants/route";
 
 const MobileNavigation = async () => {
     // const session = await auth();
