@@ -1,3 +1,4 @@
+import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
@@ -19,15 +20,15 @@ export default async function Home({ searchParams }: RouteParams) {
                     <Link href={ROUTES.ASK_QUESTION}>Ask a Question</Link>
                 </Button>
             </section>
-            <section className="ga-5 mt-11 flex justify-between max-sm:flex-col sm:items-center">
+            <section className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
                 <LocalSearch
                     route={ROUTES.HOME}
                     otherClasses="flex-1"
                     imgSrc="/icons/search.svg"
                     placeholder="Search questions..."
                 />
-                Common Filter
             </section>
+            <HomeFilter />
         </>
     );
 }
