@@ -4,10 +4,11 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import ROUTES from "@/constants/route";
 import { LogOut } from "lucide-react";
-import { signOut } from "@/auth";
+import { auth, signOut } from "@/auth";
 
-const LeftSidebar = () => {
-    const userId = 0;
+const LeftSidebar = async () => {
+    const session = await auth();
+    const userId = session?.user?.id;
     return (
         <section className="custom-scrollbar background-light900_dark200 light-border shadow-light-300 sticky top-0 left-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-6 pt-36 max-sm:hidden lg:w-[266px] dark:shadow-none">
             <div className="flex flex-1 flex-col gap-6">
@@ -24,7 +25,7 @@ const LeftSidebar = () => {
                     >
                         <Button
                             type="submit"
-                            className="base-medium w-fit !bg-transparent px-4 py-3"
+                            className="base-medium w-fit bg-transparent! px-4 py-3"
                         >
                             <LogOut className="size-5 text-black dark:text-white" />
                             <span className="text-dark300_light900 max-lg:hidden">

@@ -2,7 +2,7 @@ import { LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { signOut } from "@/auth";
+import { auth, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import {
     Sheet,
@@ -11,12 +11,12 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import NavLinks from "./Navlinks";
 import ROUTES from "@/constants/route";
+import NavLinks from "./Navlinks";
 
 const MobileNavigation = async () => {
-    // const session = await auth();
-    const userId = 0;
+    const session = await auth();
+    const userId = session?.user?.id;
 
     return (
         <Sheet>
@@ -31,10 +31,10 @@ const MobileNavigation = async () => {
             </SheetTrigger>
             <SheetContent
                 side="left"
-                className="background-light900_dark200 border-none p-3"
+                className="background-light900_dark200 border-none px-3"
             >
                 <SheetTitle className="hidden">Navigation</SheetTitle>
-                <Link href="/" className="flex items-center gap-1 pl-3">
+                <Link href="/" className="mt-2 flex items-center gap-1">
                     <Image
                         src="/images/site-logo.svg"
                         width={23}
