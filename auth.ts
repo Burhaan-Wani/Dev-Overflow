@@ -13,43 +13,43 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
         GitHub,
         Google,
-        // Credentials({
-        //     async authorize(credentials) {
-        //         const validatedFields = SignInSchema.safeParse(credentials);
+        Credentials({
+            async authorize(credentials) {
+                const validatedFields = SignInSchema.safeParse(credentials);
 
-        //         if (validatedFields.success) {
-        //             const { email, password } = validatedFields.data;
+                if (validatedFields.success) {
+                    const { email, password } = validatedFields.data;
 
-        //             const { data: existingAccount } =
-        //                 (await api.accounts.getByProvider(
-        //                     email,
-        //                 )) as ActionResponse<IAccountDoc>;
+                    const { data: existingAccount } =
+                        (await api.accounts.getByProvider(
+                            email,
+                        )) as ActionResponse<IAccountDoc>;
 
-        //             if (!existingAccount) return null;
+                    if (!existingAccount) return null;
 
-        //             const { data: existingUser } = (await api.users.getById(
-        //                 existingAccount.userId.toString(),
-        //             )) as ActionResponse<IUserDoc>;
+                    const { data: existingUser } = (await api.users.getById(
+                        existingAccount.userId.toString(),
+                    )) as ActionResponse<IUserDoc>;
 
-        //             if (!existingUser) return null;
+                    if (!existingUser) return null;
 
-        //             const isValidPassword = await bcrypt.compare(
-        //                 password,
-        //                 existingAccount.password!,
-        //             );
+                    const isValidPassword = await bcrypt.compare(
+                        password,
+                        existingAccount.password!,
+                    );
 
-        //             if (isValidPassword) {
-        //                 return {
-        //                     id: existingUser.id,
-        //                     name: existingUser.name,
-        //                     email: existingUser.email,
-        //                     image: existingUser.image,
-        //                 };
-        //             }
-        //         }
-        //         return null;
-        //     },
-        // }),
+                    if (isValidPassword) {
+                        return {
+                            id: existingUser._id.toString(),
+                            name: existingUser.name,
+                            email: existingUser.email,
+                            image: existingUser.image,
+                        };
+                    }
+                }
+                return null;
+            },
+        }),
     ],
     callbacks: {
         async session({ session, token }) {
