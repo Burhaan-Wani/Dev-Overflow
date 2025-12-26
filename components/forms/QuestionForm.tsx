@@ -24,6 +24,8 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Loader } from "lucide-react";
+import { createQuestion } from "@/lib/actions/question.action";
+import { toast } from "sonner";
 
 const Editor = dynamic(() => import("@/components/Editor"), {
     ssr: false,
@@ -52,7 +54,6 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
         e: React.KeyboardEvent<HTMLInputElement>,
         field: { value: string[] },
     ) => {
-        console.log(field, e);
         if (e.key === "Enter") {
             e.preventDefault();
             const tagInput = e.currentTarget.value.trim();
@@ -95,45 +96,38 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
     const handleCreateQuestion = async (
         data: z.infer<typeof AskQuestionSchema>,
     ) => {
-        // startTransition(async () => {
-        //     if (isEdit && question) {
-        //         const result = await editQuestion({
-        //             questionId: question?._id,
-        //             ...data,
-        //         });
-        //         if (result.success) {
-        //             toast({
-        //                 title: "Success",
-        //                 description: "Question updated successfully",
-        //             });
-        //             if (result.data)
-        //                 router.push(ROUTES.QUESTION(result.data._id));
-        //         } else {
-        //             toast({
-        //                 title: `Error ${result.status}`,
-        //                 description:
-        //                     result.error?.message || "Something went wrong",
-        //                 variant: "destructive",
-        //             });
-        //         }
-        //         return;
-        //     }
-        //     const result = await createQuestion(data);
-        //     if (result.success) {
-        //         toast({
-        //             title: "Success",
-        //             description: "Question created successfully",
-        //         });
-        //         if (result.data) router.push(ROUTES.QUESTION(result.data._id));
-        //     } else {
-        //         toast({
-        //             title: `Error ${result.status}`,
-        //             description:
-        //                 result.error?.message || "Something went wrong",
-        //             variant: "destructive",
-        //         });
-        //     }
-        // });
+        startTransition(async () => {
+            // if (isEdit && question) {
+            //     const result = await editQuestion({
+            //         questionId: question?._id,
+            //         ...data,
+            //     });
+            //     if (result.success) {
+            //         toast({
+            //             title: "Success",
+            //             description: "Question updated successfully",
+            //         });
+            //         if (result.data)
+            //             router.push(ROUTES.QUESTION(result.data._id));
+            //     } else {
+            //         toast({
+            //             title: `Error ${result.status}`,
+            //             description:
+            //                 result.error?.message || "Something went wrong",
+            //             variant: "destructive",
+            //         });
+            //     }
+            //     return;
+            // }
+            const result = await createQuestion(data);
+            if (result.success) {
+                toast.message("Question created successfully");
+                if (result.data)
+                    router.push(ROUTES.QUESTION(result.data._id.toString()));
+            } else {
+                toast.error(result.error?.message || "Something went wrong");
+            }
+        });
     };
 
     return (
