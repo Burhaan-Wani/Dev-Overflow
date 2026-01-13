@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { getTimeStamp } from "@/lib/utils";
 
+import TagCard from "./TagCard";
 import Metric from "../Metric";
 import ROUTES from "@/constants/route";
-import TagCard from "./TagCard";
 
 interface Props {
     question: Question;
@@ -48,7 +48,7 @@ const QuestionCard = ({
 
             <div className="flex-between mt-6 w-full flex-wrap gap-3">
                 <Metric
-                    imgUrl={author.image}
+                    imgUrl={author.image || "icons/avatar.svg"}
                     alt={author.name}
                     value={author.name}
                     title={`• asked ${getTimeStamp(createdAt)}`}

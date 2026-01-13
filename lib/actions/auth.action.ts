@@ -67,7 +67,6 @@ export async function signUpWithCredentials(
         return { success: true };
     } catch (error) {
         await session.abortTransaction();
-
         return handleError(error) as ErrorResponse;
     } finally {
         await session.endSession();
