@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+import ROUTES from "@/constants/route";
 import { cn, getDeviconClassName, getTechDescription } from "@/lib/utils";
 
 import { Badge } from "../ui/badge";
-import ROUTES from "@/constants/route";
 
 interface Props {
     _id: string;
@@ -80,9 +80,9 @@ const TagCard = ({
 
     return (
         <Link href={ROUTES.TAG(_id)} className="shadow-light100_darknone">
-            <article className="background-light900_dark200 light-border flex w-full flex-col rounded-2xl border px-8 py-10 sm:w-[260px]">
+            <article className="background-light900_dark200 light-border flex w-full flex-col rounded-2xl border px-6 py-8 sm:w-[250px]">
                 <div className="flex items-center justify-between gap-3">
-                    <div className="background-light800_dark400 w-fit rounded-sm px-5 py-1.5">
+                    <div className="w-fit rounded-sm bg-neutral-100 px-5 py-1.5 dark:bg-gray-900/80">
                         <p className="paragraph-semibold text-dark300_light900">
                             {name}
                         </p>
