@@ -7,7 +7,7 @@ export interface IQuestion {
     views: number;
     upvotes: number;
     downvotes: number;
-    answer: number;
+    answers: number;
     author: Types.ObjectId;
 }
 export interface IQuestionDoc extends IQuestion, Document {}
@@ -40,7 +40,7 @@ const questionSchema = new Schema(
             type: Number,
             default: 0,
         },
-        answer: {
+        answers: {
             type: Number,
             default: 0,
         },

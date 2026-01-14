@@ -1,4 +1,4 @@
-import User from "@/database/user.model";
+import {User} from "@/database";
 import dbConnect from "@/lib/db";
 import handleError from "@/lib/handlers/error";
 import { NotFoundError, ValidationError } from "@/lib/http-errors";

@@ -67,3 +67,13 @@ export const getTimeStamp = (createdAt: Date): string => {
 
     return `${diffDays} days ago`;
 };
+
+export function formatNumber(number: number) {
+    if (number >= 1000000) {
+        return (number / 1000000).toFixed(1) + "M";
+    } else if (number >= 1000) {
+        return (number / 1000).toFixed(1) + "K";
+    } else {
+        return number.toString();
+    }
+}
